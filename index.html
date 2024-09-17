@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<title>Web's Portfolio</title>
+<body onload="setTimeout(function(){ jumpTo(0) }, 300);">
+    <img id="background-1" src="astronaut.png"/>
+    <img id="background-2" src="gruv_city.jpg"/>
+    <img id="background-3" src="lines.png"/>
+    <img id="background-4" src="pxfuel.jpg"/>
+
+    <nav class="topnav">
+        <nav class="topnav-right">
+            <button class="home" onclick="jumpTo(0)">Home</button>
+            <button class="about" onclick="jumpTo(1)">About</button>
+            <button class="projects" onclick="jumpTo(2)">Projects</button>
+            <button class="contact" onclick="jumpTo(3)">Contact</button>
+        </nav>
+    </nav>
+
+    <div class="popup" id="hero">
+        <br/><br/>
+        <h1>Web Nguyen</h1>
+        <br/>
+        <h2>Programming Aficionado</h2>
+    </div>
+
+    <div class="popup" id="about">
+        <br/><br/>
+        <h2>About Me</h2>
+        <br/>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+    </div>
+
+    <div id="projects">
+        <div class="projects-popups" id="project-1">Cool Project 1</div>
+        <div class="projects-popups" id="project-2">Cool Project 2</div>
+        <div class="projects-popups" id="project-3">Cool Project 3</div>
+        <div class="projects-popups" id="project-4">Cool Project 4</div>
+    </div>
+
+    <div class="popup" id="contact">
+        <br/><br/><br/>
+        <h2>Contact Me At:</h2>
+        <br/><br/>
+        <p>Email: wnguye4@uwo.ca</p>
+        <p>Phone: ***-***-****</p>
+        <p>Website: You're looking at it</p>
+    </div>
+
+    <script>
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+
+        window.addEventListener('scroll', function scrollWindow() {
+            let scrollAmount = window.scrollY / window.innerHeight / 3;
+            let projects = document.getElementsByClassName('projects-popups');
+
+            console.log(scrollAmount);
+
+            if(scrollAmount<=1.5) {
+                document.getElementById('hero').style.backdropFilter = 'blur('+scrollAmount*2+'px)';
+                document.getElementById('hero').style.opacity = scrollAmount;
+
+            } else if(scrollAmount>1.5 && scrollAmount <=3.5) {
+                document.getElementById('background-1').style.opacity = 3-scrollAmount;
+                document.getElementById('hero').style.opacity = 3-scrollAmount;
+
+                document.getElementById('about').style.backdropFilter = 'blur('+(scrollAmount*2-4)+'px)';
+                document.getElementById('about').style.opacity = scrollAmount - 2;
+
+            } else if(scrollAmount>3.5 && scrollAmount <=5.5) {
+                document.getElementById('background-2').style.opacity = 5-scrollAmount;
+                document.getElementById('about').style.opacity = 5-scrollAmount;
+                
+                for(let i of projects) {
+                    i.style.backdropFilter = 'blur('+(scrollAmount*2-8)+'px)';
+                    i.style.opacity = scrollAmount-4;
+                }
+                
+            } else if (scrollAmount>5.5 && scrollAmount <=7.5) {
+                document.getElementById('background-3').style.opacity = 7-scrollAmount;
+                for(let i of projects) {
+                    i.style.opacity = 7-scrollAmount;
+                }
+
+                document.getElementById('contact').style.backdropFilter = 'blur('+(scrollAmount*2-12)+'px)';
+                document.getElementById('contact').style.opacity = scrollAmount-6;
+            }
+        });
+
+        //JS that does stuff on scroll
+        //TODO: add scroll functionality to navbar
+            // add auto scroll to name
+
+        function jumpTo(to) {
+            switch(to) {
+                case 0:
+                    window.scrollTo({top:window.innerHeight*3, left:0,behavior:"smooth"});
+                    break;
+                case 1:
+                    window.scrollTo({top:window.innerHeight*9,left:0,behavior:"smooth"});
+                    break;
+                case 2:
+                    window.scrollTo({top:window.innerHeight*15,left:0,behavior:"smooth"});
+                    break;
+                case 3:
+                    window.scrollTo({top:window.innerHeight*22,left:0,behavior:"smooth"});
+                    break;
+            }
+        }
+
+    </script>
+</body>
