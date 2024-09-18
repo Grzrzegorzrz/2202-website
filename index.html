@@ -44,7 +44,7 @@
         <div class="projects-popups" id="project-4">Cool Project 4</div>
     </div>
 
-    <div class="popup" id="contact">
+    <div id="contact">
         <br/><br/><br/>
         <h2>Contact Me At:</h2>
         <br/><br/>
@@ -90,7 +90,6 @@
                     i.style.opacity = 7-scrollAmount;
                 }
 
-                document.getElementById('contact').style.backdropFilter = 'blur('+(scrollAmount*2-12)+'px)';
                 document.getElementById('contact').style.opacity = scrollAmount-6;
             }
         });
